@@ -1,2 +1,5 @@
 # article-preview-component
-Created with CodeSandbox
+
+[Live Site](https://article-preview-component.adammescher.vercel.app/)
+
+[Code Sandbox](https://codesandbox.io/s/hopeful-moser-0hs2jn)
