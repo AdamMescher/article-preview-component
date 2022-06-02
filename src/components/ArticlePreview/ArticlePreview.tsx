@@ -132,7 +132,11 @@ const ArticlePreview = ({
             <Author>{author}</Author>
             <Date>{publicationDate}</Date>
           </NameAndDateWrapper>
-          <Share type={size && size?.width > 650 ? "popover" : "container"} />
+          <Share
+            type={
+              size && size.width && size.width > 650 ? "popover" : "container"
+            }
+          />
         </ShareWrapper>
       </Content>
     </Wrapper>
