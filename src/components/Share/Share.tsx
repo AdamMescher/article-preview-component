@@ -5,6 +5,10 @@ import { ReactComponent as FacebookIcon } from "../../assets/icon-facebook.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icon-twitter.svg";
 import { ReactComponent as PinterestIcon } from "../../assets/icon-pinterest.svg";
 
+interface Props {
+  type: string;
+}
+
 const ExpandedWrapper = styled.div<{ expanded: boolean }>`
   background: var(--very-dark-grayish-blue);
   color: var(--very-dark-grayish-blue);
@@ -20,6 +24,8 @@ const ExpandedWrapper = styled.div<{ expanded: boolean }>`
   padding-right: 24px;
   padding-left: 24px;
   margin-bottom: ${(props) => (props.expanded ? "20px" : "0px")};
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 `;
 const ShareCopy = styled.p`
   text-transform: uppercase;
@@ -32,6 +38,7 @@ const IconList = styled.div`
   align-items: center;
   gap: 18px;
   margin-right: auto;
+  padding-right: 8px;
   & > svg {
     cursor: pointer;
     color: var(--white);
@@ -59,13 +66,57 @@ const Button = styled.button<{ expanded: boolean }>`
   }
 `;
 
-const Share = () => {
+const Popover = styled.div`
+  position: relative;
+`;
+const PopoverContent = styled.div`
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  background: green;
+  top: -75px;
+  left: -80px;
+  z-index: 999;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  background: var(--very-dark-grayish-blue);
+  align-items: center;
+  & > span {
+    margin-right: 24px;
+    text-transform: uppercase;
+  }
+`;
+const Arrow = styled.div`
+  position: absolute;
+  bottom: -15px;
+  left: 87px;
+  width: 25px;
+  height: 15px;
+  background: var(--very-dark-grayish-blue);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+`;
+const IconListPopover = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  & > svg {
+    cursor: pointer;
+    color: var(--white);
+  }
+
+  & > svg:hover {
+    color: var(--grayish-blue);
+  }
+`;
+
+const Share = ({ type }: Props) => {
   const [expanded, setExpanded] = React.useState(false);
   const handleClick = () => {
     setExpanded(!expanded);
   };
   if (expanded) {
-    return (
+    return type === "container" ? (
       <ExpandedWrapper expanded={expanded}>
         <ShareCopy>share</ShareCopy>
         <IconList>
@@ -77,6 +128,21 @@ const Share = () => {
           <ShareIcon />
         </Button>
       </ExpandedWrapper>
+    ) : (
+      <Popover>
+        <Button expanded={expanded} onClick={handleClick}>
+          <ShareIcon />
+        </Button>
+        <PopoverContent>
+          <Arrow />
+          <ShareCopy>share</ShareCopy>
+          <IconListPopover>
+            <FacebookIcon />
+            <TwitterIcon />
+            <PinterestIcon />
+          </IconListPopover>
+        </PopoverContent>
+      </Popover>
     );
   }
   return (

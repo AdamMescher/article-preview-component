@@ -6,6 +6,7 @@
   "main": "src/index.tsx",
   "dependencies": {
     "@axe-core/react": "4.4.0",
+    "@radix-ui/react-popover": "0.1.6",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.2.0",
     "@testing-library/user-event": "14.2.0",

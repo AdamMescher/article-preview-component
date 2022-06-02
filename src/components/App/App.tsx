@@ -1,7 +1,14 @@
+import * as React from "react";
 import styled from "styled-components";
 import ArticlePreview from "../ArticlePreview";
+import useWindowSize from "../../hooks/useWindowSize";
 import Avatar from "../../assets/avatar-michelle.jpg";
 import Drawers from "../../assets/drawers.jpg";
+
+interface Size {
+  width: number | undefined;
+  height: number | undefined;
+}
 
 const article = {
   author: "Michelle Appleton",
@@ -11,9 +18,10 @@ const article = {
   description:
     "Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I’ve got some simple tips to help you make any room feel complete.",
   articleSrc: Drawers,
-  articleAlt: "",
+  articleAlt:
+    "green drawers with tasteful arrangement of two photos and a jar with wheat",
   avatarSrc: Avatar,
-  avatarAlt: ""
+  avatarAlt: "Article author Michelle Appleton"
 };
 
 const Wrapper = styled.main`
@@ -24,9 +32,14 @@ const Wrapper = styled.main`
   height: 100vh;
   padding-left: 24px;
   padding-right: 24px;
+  @media (min-width: 650px) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 `;
 
 function App() {
+  const size: Size = useWindowSize();
   return (
     <Wrapper data-testid="app">
       <ArticlePreview
@@ -38,6 +51,7 @@ function App() {
         articleAlt={article.articleAlt}
         avatarSrc={article.avatarSrc}
         avatarAlt={article.avatarAlt}
+        size={size}
       />
     </Wrapper>
   );

@@ -1,5 +1,11 @@
+import * as React from "react";
 import styled from "styled-components";
 import Share from "../Share";
+
+interface Size {
+  width: number | undefined;
+  height: number | undefined;
+}
 
 interface Props {
   author: string;
@@ -10,12 +16,13 @@ interface Props {
   articleAlt: string;
   avatarSrc: string;
   avatarAlt: string;
+  size: Size;
 }
 
 const Wrapper = styled.article`
+  min-width: 260px;
   background: var(--white);
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0.7px 2.1px 2.7px rgba(0, 0, 0, 0.022),
     1.7px 5.2px 6.9px rgba(0, 0, 0, 0.031),
     3.5px 10.6px 14.2px rgba(0, 0, 0, 0.039),
@@ -26,6 +33,9 @@ const Wrapper = styled.article`
   }
 `;
 const ImageWrapper = styled.div`
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  overflow: hidden;
   & > img {
     width: 100%;
     display: block;
@@ -44,9 +54,13 @@ const ImageWrapper = styled.div`
   }
 `;
 const Content = styled.div`
-  margin-left: 28px;
-  margin-right: 28px;
+  margin-left: 24px;
+  margin-right: 24px;
   margin-top: 40px;
+  @media (min-width: 650px) {
+    margin-left: 28px;
+    margin-right: 28px;
+  }
 `;
 const Title = styled.h3`
   color: var(--very-dark-grayish-blue);
@@ -84,6 +98,8 @@ const NameAndDateWrapper = styled.div`
 const Author = styled.p`
   color: var(--very-dark-grayish-blue);
   font-weight: var(--fw-bold);
+  padding-right: 6px;
+  white-space: nowrap;
 `;
 const Date = styled.p`
   color: var(--grayish-blue);
@@ -97,7 +113,8 @@ const ArticlePreview = ({
   articleSrc,
   articleAlt,
   avatarSrc,
-  avatarAlt
+  avatarAlt,
+  size
 }: Props) => {
   return (
     <Wrapper>
@@ -115,7 +132,7 @@ const ArticlePreview = ({
             <Author>{author}</Author>
             <Date>{publicationDate}</Date>
           </NameAndDateWrapper>
-          <Share />
+          <Share type={size && size?.width > 650 ? "popover" : "container"} />
         </ShareWrapper>
       </Content>
     </Wrapper>
