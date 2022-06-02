@@ -20,6 +20,10 @@ const Wrapper = styled.article`
     1.7px 5.2px 6.9px rgba(0, 0, 0, 0.031),
     3.5px 10.6px 14.2px rgba(0, 0, 0, 0.039),
     7.3px 21.9px 29.2px rgba(0, 0, 0, 0.048), 20px 60px 80px rgba(0, 0, 0, 0.07);
+  @media (min-width: 650px) {
+    display: flex;
+    max-width: 700px;
+  }
 `;
 const ImageWrapper = styled.div`
   & > img {
@@ -29,10 +33,19 @@ const ImageWrapper = styled.div`
     height: max(10rem, 30vh);
     max-height: max(10rem, 30vh);
   }
+  @media (min-width: 650px) {
+    background: yellow;
+    & > img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      max-height: 100%;
+    }
+  }
 `;
 const Content = styled.div`
-  margin-left: 24px;
-  margin-right: 24px;
+  margin-left: 28px;
+  margin-right: 28px;
   margin-top: 40px;
 `;
 const Title = styled.h3`

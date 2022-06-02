@@ -5,11 +5,6 @@ import { ReactComponent as FacebookIcon } from "../../assets/icon-facebook.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icon-twitter.svg";
 import { ReactComponent as PinterestIcon } from "../../assets/icon-pinterest.svg";
 
-const Wrapper = styled.div`
-  background: var(--very-dark-grayish-blue);
-  color: var(--very-dark-grayish-blue);
-  padding-bottom: 24px;
-`;
 const ExpandedWrapper = styled.div<{ expanded: boolean }>`
   background: var(--very-dark-grayish-blue);
   color: var(--very-dark-grayish-blue);
